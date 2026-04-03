@@ -192,23 +192,7 @@ test.describe('@ShoppingCart Shopping Cart Tests', () => {
 
     // ========== NEGATIVE TEST SCENARIOS ==========
 
-    test.skip('@ShoppingCart Negative: Attempt to remove product not in cart', async ({ page }) => {
-        const productInCart = 'Sauce Labs Backpack';
-        const productNotInCart = 'Sauce Labs Bike Light';
-        
-        // Add one product
-        await productPage.getProductInToCartByName(productInCart);
-        const cartCountBefore = await productPage.getCartItemCount();
-        
-        // Try to remove product that was never added
-        await productPage.clickRemoveButtonForProduct(productNotInCart);
-        const cartCountAfter = await productPage.getCartItemCount();
-        
-        // Cart count should remain the same (no product was removed)
-        expect(cartCountAfter).toBe(cartCountBefore);
-        
-        console.log(`=== Test PASSED: System handled removal of non-existent product correctly ===`);
-    });
+   
 
     test('@ShoppingCart Negative: Verify button state for non-existent product', async ({ page }) => {
         const nonExistentProduct = 'Non Existent Product XYZ';
