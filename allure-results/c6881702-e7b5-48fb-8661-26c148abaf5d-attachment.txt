@@ -1,0 +1,7 @@
+=== Starting login process ===
+Page loaded successfully after login
+Added product "Sauce Labs Backpack" to cart
+Added product "Sauce Labs Bike Light" to cart
+Removed product "Sauce Labs Backpack" from cart
+Removed product "Sauce Labs Bike Light" from cart
+=== Test PASSED: Cart successfully emptied by removing all products ===

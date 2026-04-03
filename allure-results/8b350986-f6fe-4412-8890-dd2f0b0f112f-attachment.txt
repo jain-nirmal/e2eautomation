@@ -1,0 +1,4 @@
+=== Starting login process ===
+Page loaded successfully after login
+Added product "Sauce Labs Fleece Jacket" to cart
+=== Test PASSED: Button correctly changed from "Add to cart" to "Remove" ===

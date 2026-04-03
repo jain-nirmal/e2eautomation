@@ -1,0 +1,4 @@
+=== Starting login process ===
+Page loaded successfully after login
+Added product "Sauce Labs Backpack" to cart
+Removed product "Sauce Labs Bike Light" from cart
