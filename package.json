@@ -9,7 +9,7 @@
     "test:debug": "playwright test --debug",
     "allure:report": "allure generate allure-results --clean -o allure-report",
     "allure:open": "allure open allure-report",
-    "test:docker": "docker build -t docker-playwright-tests . && docker run --rm docker-playwright-tests"
+    "test:docker": "docker build -t playwright-docker-tests . && docker run --rm -v \"D:\\E2E-Automation\\allure-report:/app/allure-report\" playwright-docker-tests"
   },
   "keywords": [],
   "author": "",

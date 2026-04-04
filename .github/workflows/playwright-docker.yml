@@ -1,0 +1,43 @@
+name: Playwright Tests -Docker
+on:
+  push:
+    branches: [ main ]
+jobs:
+  test-docker-playwright:
+    runs-on: ubuntu-latest
+    # Using the official Playwright Docker container as the 'container' for the job
+    container:
+      image: mcr.microsoft.com/playwright:v1.59.1-noble
+      options: --user 1001 --ipc=host
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Playwright tests
+        run: npx playwright test
+        continue-on-error: true # Ensure the report generates even if tests fail
+
+      - name: Get Allure history
+        uses: actions/checkout@v4
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Generate Allure Report
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        with:
+          allure_results: allure-results
+          allure_history: allure-history
+
+      - name: Deploy Report to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: allure-history
