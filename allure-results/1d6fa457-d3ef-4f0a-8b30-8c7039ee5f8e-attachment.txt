@@ -1,3 +1,0 @@
-=== Starting login process ===
-Page loaded successfully after login
-=== Test PASSED: Correct error message for locked out user ===

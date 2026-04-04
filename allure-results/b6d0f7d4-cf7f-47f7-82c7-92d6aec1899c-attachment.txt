@@ -1,6 +1,0 @@
-=== Test: Session persists across page refresh ===
-=== Starting login process ===
-Page loaded successfully after login
-Logged in successfully
-Page refreshed
-=== Test PASSED: Session persists after page refresh ===

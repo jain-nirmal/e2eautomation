@@ -1,4 +1,0 @@
-=== Starting login process ===
-Page loaded successfully after login
-Cart item count before removing product: 0
-Product "Sauce Labs Backpack" is not in the cart

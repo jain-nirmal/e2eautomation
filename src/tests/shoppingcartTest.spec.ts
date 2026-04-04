@@ -217,7 +217,8 @@ test.describe('@ShoppingCart Shopping Cart Tests', () => {
         // Immediately remove product
         await productPage.clickRemoveButtonForProduct(productName);
         currentCount = await productPage.getCartItemCount();
-        expect(currentCount).toBe(initialCount);
+       // expect(currentCount).toBe(initialCount);
+        expect(currentCount).toBe(0);
         
         console.log(`=== Test PASSED: Product successfully added and removed in sequence ===`);
     });

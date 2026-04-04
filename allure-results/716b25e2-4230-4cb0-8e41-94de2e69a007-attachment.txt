@@ -1,5 +1,0 @@
-=== Starting login process ===
-Page loaded successfully after login
-Added product "Sauce Labs Backpack" to cart
-Added product "Sauce Labs Bike Light" to cart
-=== Test PASSED: Cart item count incremented correctly to 2 ===

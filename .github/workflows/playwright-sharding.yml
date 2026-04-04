@@ -9,6 +9,8 @@ on:
 jobs:
   playwright-tests:
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.59.1-noble
 
     strategy:
       matrix:

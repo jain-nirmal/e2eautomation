@@ -1,5 +1,0 @@
-=== Starting login process ===
-Page loaded successfully after login
-Added product "Sauce Labs Onesie" to cart
-Removed product "Sauce Labs Onesie" from cart
-=== Test PASSED: Button correctly changed from "Remove" back to "Add to cart" ===

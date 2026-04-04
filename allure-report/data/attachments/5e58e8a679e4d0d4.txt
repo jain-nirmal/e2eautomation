@@ -1,5 +1,0 @@
-=== Starting login process ===
-Page loaded successfully after login
-Added product "Sauce Labs Backpack" to cart
-Removed product "Sauce Labs Backpack" from cart
-=== Test PASSED: Product successfully added and removed in sequence ===
