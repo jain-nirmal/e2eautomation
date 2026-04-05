@@ -113,7 +113,7 @@ jobs:
             Attached is the zipped report.
 
             Best,
-            GitHub Actions
+            Nirmal Jain
           to: nirmal-jain@zohomail.in,njnirmal@hotmail.com
           from: ${{ secrets.SMTP_USERNAME }}
           attachments: allure-report.zip
