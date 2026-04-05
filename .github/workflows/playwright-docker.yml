@@ -36,9 +36,8 @@ jobs:
           allure_history: allure-history
 
       - name: Deploy Report to GitHub Pages
-        if: always() && github.ref == 'refs/heads/main'  # Add this condition
-            uses: peaceiris/actions-gh-pages@v3
-            with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-            publish_dir: allure-history
-            force_orphan: true  # Add this to auto-create gh-pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: allure-history
