@@ -1,0 +1,91 @@
+name: Playwright Tests - Docker Parallel Sharding
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  test-docker-playwright-parallel:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3]
+    
+    # Using the official Playwright Docker container as the 'container' for the job
+    container:
+      image: mcr.microsoft.com/playwright:v1.59.1-noble
+      options: --user 1001 --ipc=host
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Playwright tests - Shard ${{ matrix.shard }}/3
+        run: npx playwright test --shard=${{ matrix.shard }}/3
+        continue-on-error: true # Ensure reports generate even if tests fail
+
+      - name: Upload allure-results for shard ${{ matrix.shard }}
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results-shard-${{ matrix.shard }}
+          path: allure-results
+          retention-days: 1
+
+  merge-reports:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    needs: test-docker-playwright-parallel
+    if: always()
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download all allure-results artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: allure-results-all
+          pattern: allure-results-shard-*
+
+      - name: Merge allure-results from all shards
+        run: |
+          mkdir -p allure-results
+          for dir in allure-results-all/*/; do
+            cp -r "$dir"* allure-results/ 2>/dev/null || true
+          done
+
+      - name: Set up Java for Allure
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '11'
+
+      - name: Install Node.js dependencies
+        run: npm ci
+
+      - name: Generate Allure Report
+        run: npx allure generate allure-results --clean -o allure-report
+
+      - name: Upload Allure Report artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: allure-report
+
+      - name: Deploy Report to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-report
+          force_orphan: true
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
