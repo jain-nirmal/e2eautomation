@@ -115,5 +115,5 @@ jobs:
             Best,
             Nirmal Jain
           to: nirmal-jain@zohomail.in,njnirmal@hotmail.com
-          from: ${{ secrets.SMTP_USERNAME }}
+          from: ${{ secrets.SMTP_FROM }}
           attachments: allure-report.zip
