@@ -88,7 +88,7 @@ test.describe('@Login Login Page Tests',()=>{
         await loginPage.enterPassword('secret_sauce');
         await loginPage.clickLoginButton();
         
-        await expect(page.locator('[data-test="error"]')).toContainText('TestgEpic sadface: Username is required');
+        await expect(page.locator('[data-test="error"]')).toContainText('Epic sadface: Username is required');
         console.log("=== Test PASSED: Correct error message for empty username ===");
     });
 
