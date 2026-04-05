@@ -20,10 +20,12 @@ jobs:
         run: npx playwright test
         continue-on-error: true # Ensure the report generates even if tests fail
 
-      - name: Install Java for Allure
+      - name: Set up Java for Allure
         if: always()
-        run: apt-get update && apt-get install -y default-jre
-
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '11'
 
       - name: Generate Allure Report
         if: always()
